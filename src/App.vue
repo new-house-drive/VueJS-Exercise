@@ -17,12 +17,13 @@ export default {
   },
 
   mounted() {
-    let path = "/public/exercise";
+    let path = "exercise.json";
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.open("GET", path, true);
     xhr.onload = () => {
+
       this.transactions = xhr.response;
     };
 
