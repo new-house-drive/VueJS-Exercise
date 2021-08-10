@@ -2,7 +2,7 @@
   <!DOCTYPE html>
   <html>
     <div id="app">
-      Valera
+      {{ this.transactions }}
     </div>
   </html>
 </template>
@@ -17,18 +17,18 @@ export default {
   },
 
   mounted() {
-    let path = "exercise.json";
+    let path = "/public/exercise";
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.open("GET", path, true);
     xhr.onload = () => {
-      console.log(xhr.responseStatus)
       this.transactions = xhr.response;
-      console.log(this.transactions)
     };
 
-    xhr.send(true);
+    xhr.send();
+
+
   },
 };
 </script>
