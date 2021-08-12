@@ -1,0 +1,13 @@
+#app {
+
+}
+
+.table-top {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.table {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+}
