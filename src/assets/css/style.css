@@ -7,6 +7,13 @@
     grid-template-columns: repeat(3, auto);
 }
 
+.edit-table-menu {
+    display: grid;
+    grid-template-columns: auto;
+
+    position: absolute;
+}
+
 .table {
     display: grid;
     grid-template-columns: repeat(6, auto);
