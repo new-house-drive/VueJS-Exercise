@@ -6,9 +6,9 @@
         <div>Currencies</div>
 
         <div class="edit-table">
-          <button>Edit table</button>
+          <button @click="this.displayEditTable=true">Edit table</button>
 
-          <div class="edit-table-menu">
+          <div v-show="dissplayEditTable" class="edit-table-menu">
             <button>Last update</button>
             <button>Code</button>
             <button>Name</button>
@@ -73,7 +73,12 @@ export default {
   data() {
     return {
       transactions: [],
+      dissplayEditTable: false,
     };
+  },
+
+  methods: {
+    
   },
 
   mounted() {
