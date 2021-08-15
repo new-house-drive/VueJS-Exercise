@@ -6,7 +6,7 @@
         <div>Currencies</div>
 
         <div class="edit-table">
-          <button @click="viewEditTable = !viewEditTable" >Edit table</button>
+          <button @click="viewEditTable = !viewEditTable">Edit table</button>
 
           <div v-show="viewEditTable" class="edit-table-menu">
             <button>Last update</button>
@@ -76,28 +76,42 @@ export default {
       transactions: [],
 
       // EditTable variables
-      viewEditTable: true,
+      viewEditTable: false,
 
       //Columns Visibility
       viewLastUpdateCol: true,
     };
   },
 
-  methods: {
+  mounted() {
+    this.reloadJSON();
+    //   let path = "/exercise.json";
+    //   let xhr = new XMLHttpRequest();
+    //   xhr.responseType = "json";
 
+    //   xhr.open("GET", path, true);
+    //   xhr.onload = () => {
+    //     this.transactions = xhr.response;
+    //   };
+
+    //   xhr.send();
+    // },
+    //};
   },
 
-  mounted() {
-    let path = "/exercise.json";
-    let xhr = new XMLHttpRequest();
-    xhr.responseType = "json";
+  methods: {
+    reloadJSON() {
+      let path = "/exercise.json";
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = "json";
 
-    xhr.open("GET", path, true);
-    xhr.onload = () => {
-      this.transactions = xhr.response;
-    };
+      xhr.open("GET", path, true);
+      xhr.onload = () => {
+        this.transactions = xhr.response;
+      };
 
-    xhr.send();
+      xhr.send();
+    },
   },
 };
 </script>
