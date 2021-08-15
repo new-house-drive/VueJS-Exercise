@@ -6,9 +6,9 @@
         <div>Currencies</div>
 
         <div class="edit-table">
-          <button @click="this.displayEditTable=true">Edit table</button>
+          <button @click="viewEditTable = !viewEditTable" >Edit table</button>
 
-          <div v-show="dissplayEditTable" class="edit-table-menu">
+          <div v-show="viewEditTable" class="edit-table-menu">
             <button>Last update</button>
             <button>Code</button>
             <button>Name</button>
@@ -72,13 +72,19 @@ export default {
   name: "App",
   data() {
     return {
+      // JSON operations
       transactions: [],
-      dissplayEditTable: false,
+
+      // EditTable variables
+      viewEditTable: true,
+
+      //Columns Visibility
+      viewLastUpdateCol: true,
     };
   },
 
   methods: {
-    
+
   },
 
   mounted() {
