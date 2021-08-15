@@ -6,57 +6,77 @@
         <div>Currencies</div>
 
         <div class="edit-table">
-          <button @click="viewEditTable = !viewEditTable">Edit table</button>
+          <button @click="viewEditTable = !viewEditTable">
+            Edit table
+          </button>
 
           <div v-show="viewEditTable" class="edit-table-menu">
-            <button>Last update</button>
-            <button>Code</button>
-            <button>Name</button>
-            <button>Deposit enabled</button>
-            <button>Withdrawal enabled</button>
-            <button>Trading enabled</button>
+            <button @click="viewLastUpdateCol = !viewLastUpdateCol">
+              Last update
+            </button>
+
+            <button @click="viewCodeCol = !viewCodeCol">
+              Code
+            </button>
+
+            <button @click="viewNameCol = !viewNameCol">
+              Name
+            </button>
+
+            <button @click="viewDepositEnabledCol = !viewDepositEnabledCol">
+              Deposit enabled
+            </button>
+
+            <button @click="viewWithdrawEnabledCol = !viewWithdrawEnabledCol">
+              Withdrawal enabled
+            </button>
+
+            <button @click="viewTradingEnabledCol = !viewTradingEnabledCol">
+              Trading enabled
+            </button>
+
           </div>
         </div>
         <input placeholder="Search" />
       </div>
 
       <div class="table">
-        <div class="column">
+        <div v-show='viewLastUpdateCol' class="column">
           <p>Last update</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.last_update_at }}
           </div>
         </div>
 
-        <div class="column">
+        <div v-show="viewCodeCol" class="column">
           <p>Code</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.code }}
           </div>
         </div>
 
-        <div class="column">
+        <div v-show="viewNameCol" class="column">
           <p>Name</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.name }}
           </div>
         </div>
 
-        <div class="column">
+        <div v-show="viewDepositEnabledCol" class="column">
           <p>Deposit enabled</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.deposit_enabled }}
           </div>
         </div>
 
-        <div class="column">
+        <div v-show='viewWithdrawEnabledCol' class="column">
           <p>Withdrawal enabled</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.withdrawal_enabled }}
           </div>
         </div>
 
-        <div class="column">
+        <div v-show="viewTradingEnabledCol" class="column">
           <p>Trading enabled</p>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.trading_enabled }}
@@ -80,6 +100,11 @@ export default {
 
       //Columns Visibility
       viewLastUpdateCol: true,
+      viewCodeCol: true,
+      viewNameCol: true,
+      viewDepositEnabledCol: true,
+      viewWithdrawEnabledCol: true,
+      viewTradingEnabledCol: true,
     };
   },
 
