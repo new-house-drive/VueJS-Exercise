@@ -38,5 +38,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/new-house-drive/VueJS-Exercise.git"
+  },
+  "author": "valera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/new-house-drive/VueJS-Exercise/issues"
+  },
+  "homepage": "https://github.com/new-house-drive/VueJS-Exercise#readme"
 }
