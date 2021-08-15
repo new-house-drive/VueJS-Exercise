@@ -105,23 +105,12 @@ export default {
       viewDepositEnabledCol: true,
       viewWithdrawEnabledCol: true,
       viewTradingEnabledCol: true,
+
     };
   },
 
   mounted() {
     this.reloadJSON();
-    //   let path = "/exercise.json";
-    //   let xhr = new XMLHttpRequest();
-    //   xhr.responseType = "json";
-
-    //   xhr.open("GET", path, true);
-    //   xhr.onload = () => {
-    //     this.transactions = xhr.response;
-    //   };
-
-    //   xhr.send();
-    // },
-    //};
   },
 
   methods: {
