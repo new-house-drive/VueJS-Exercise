@@ -42,42 +42,44 @@
 
       <div class="table">
         <div v-show='viewLastUpdateCol' class="column">
-          <p>Last update</p>
+          <button>Last update</button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.last_update_at }}
           </div>
         </div>
 
         <div v-show="viewCodeCol" class="column">
-          <p>Code</p>
+          <button>Code</button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.code }}
           </div>
         </div>
 
         <div v-show="viewNameCol" class="column">
-          <p>Name</p>
+          <button @click="sortTransactionsByName">
+            Name
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.name }}
           </div>
         </div>
 
         <div v-show="viewDepositEnabledCol" class="column">
-          <p>Deposit enabled</p>
+          <button>Deposit enabled</button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.deposit_enabled }}
           </div>
         </div>
 
         <div v-show='viewWithdrawEnabledCol' class="column">
-          <p>Withdrawal enabled</p>
+          <button>Withdrawal enabled</button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.withdrawal_enabled }}
           </div>
         </div>
 
         <div v-show="viewTradingEnabledCol" class="column">
-          <p>Trading enabled</p>
+          <button>Trading enabled</button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.trading_enabled }}
           </div>
@@ -125,6 +127,12 @@ export default {
       };
 
       xhr.send();
+    },
+
+    sortTransactionsByName() {
+      this.transactions.sort((a, b) => {
+        return a.name > b.name
+      })
     },
   },
 };
