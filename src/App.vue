@@ -34,22 +34,25 @@
             <button @click="viewTradingEnabledCol = !viewTradingEnabledCol">
               Trading enabled
             </button>
-
           </div>
         </div>
         <input placeholder="Search" />
       </div>
 
       <div class="table">
-        <div v-show='viewLastUpdateCol' class="column">
-          <button>Last update</button>
+        <div v-show="viewLastUpdateCol" class="column">
+          <button @click="sortTransactionsByLastUpdate">
+            Last update
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.last_update_at }}
           </div>
         </div>
 
         <div v-show="viewCodeCol" class="column">
-          <button>Code</button>
+          <button @click="sortTransactionsByCode">
+            Code
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.code }}
           </div>
@@ -58,28 +61,34 @@
         <div v-show="viewNameCol" class="column">
           <button @click="sortTransactionsByName">
             Name
-            </button>
+          </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.name }}
           </div>
         </div>
 
         <div v-show="viewDepositEnabledCol" class="column">
-          <button>Deposit enabled</button>
+          <button @click="sortTransactionsByDepositEnabled">
+            Deposit enabled
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.deposit_enabled }}
           </div>
         </div>
 
-        <div v-show='viewWithdrawEnabledCol' class="column">
-          <button>Withdrawal enabled</button>
+        <div v-show="viewWithdrawEnabledCol" class="column">
+          <button @click="sortTransactionsByWithdrawalEnabled">
+            Withdrawal enabled
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.withdrawal_enabled }}
           </div>
         </div>
 
         <div v-show="viewTradingEnabledCol" class="column">
-          <button>Trading enabled</button>
+          <button @click="sortTransactionsByTradingEnabled">
+            Trading enabled
+            </button>
           <div v-for="transaction in transactions" :key="transaction.key">
             {{ transaction.trading_enabled }}
           </div>
@@ -108,6 +117,13 @@ export default {
       viewWithdrawEnabledCol: true,
       viewTradingEnabledCol: true,
 
+      //Name sorting
+      sortingByLastUpdateAscending: false,
+      sortingByCodeAscending: false,
+      sortingByNameAscending: false,
+      sortingByDepositEnabledAscending: false,
+      sortingByWithdrawalEnabledAscending: false,
+      sortingByTradingEnabledAscending: false,
     };
   },
 
@@ -129,11 +145,48 @@ export default {
       xhr.send();
     },
 
-    sortTransactionsByName() {
-      this.transactions.sort((a, b) => {
-        return a.name > b.name
-      })
+    sortTransactionsByLastUpdate() {
+      this.sortColumn(this.sortingByLastUpdateAscending, "last_update_at")
+      this.sortingByLastUpdateAscending = !this.sortingByLastUpdateAscending;
     },
+
+    sortTransactionsByCode() {
+      this.sortColumn(this.sortingByCodeAscending, 'code')
+      this.sortingByCodeAscending = !this.sortingByCodeAscending;
+    },
+
+    sortTransactionsByName() {
+      this.sortColumn(this.sortingByNameAscending, 'name')
+      this.sortingByNameAscending = !this.sortingByNameAscending;
+    },
+
+    sortTransactionsByDepositEnabled() {
+      this.sortColumn(this.sortingByDepositEnabledAscending, "deposit_enabled")
+      this.sortingByDepositEnabledAscending = !this.sortingByDepositEnabledAscending;
+    },
+
+    sortTransactionsByWithdrawalEnabled() {
+      this.sortColumn(this.sortingByWithdrawalEnabledAscending, "withdrawal_enabled")
+      this.sortingByWithdrawalEnabledAscending = !this.sortingByWithdrawalEnabledAscending;
+    },
+
+    sortTransactionsByTradingEnabled() {
+      this.sortColumn(this.sortingByTradingEnabledAscending, "trading_enabled")
+      this.sortingByTradingEnabledAscending = !this.sortingByTradingEnabledAscending;
+    },
+
+    sortColumn(isSorted, field) {
+      if (isSorted) {
+        this.transactions.sort((a, b) => {
+          return a[field] < b[field];
+        });
+      } else {
+        this.transactions.sort((a, b) => {
+          return a[field] > b[field];
+        });
+      }
+    },
+    
   },
 };
 </script>
