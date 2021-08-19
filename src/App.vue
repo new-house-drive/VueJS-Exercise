@@ -36,7 +36,10 @@
             </button>
           </div>
         </div>
-        <input placeholder="Search" />
+
+
+        <input v-model="searchInput" placeholder="Search" />
+      
       </div>
 
       <div class="table">
@@ -124,6 +127,9 @@ export default {
       isSortedDepositCol: false,
       isSortedWithdrawalCol: false,
       isSortedTradingCol: false,
+
+      //Search by input
+      searchInput: '',
     };
   },
 
@@ -185,8 +191,8 @@ export default {
       });
     },
 
-    filterSearchInput(){
-      
+    filterByUserInput(){
+      // sort transactions by user input
     }
   },
 };
