@@ -190,17 +190,17 @@ export default {
       });
     },
 
-    // filteredCurrencies() {
-    //   // sort currencies by user input
-    //   if (this.searchInput) {
-    //     let newcurrencies = this.currencies.filter((item) => {
-    //       return item["name"].includes(this.searchInput);
-    //     });
-    //     return newcurrencies;
+    filteredCurrencies() {
+      // sort currencies by user input
+      if (this.searchInput) {
+        let newcurrencies = this.currencies.filter((item) => {
+          return item["name"].includes(this.searchInput);
+        });
+        return newcurrencies;
         
-    //   }
-    //   return this.currencies;
-    // },
+      }
+      return this.currencies;
+    },
   },
 };
 </script>
