@@ -37,11 +37,9 @@
           </div>
         </div>
 
-
         <input v-model="searchInput" placeholder="Search" />
-      
       </div>
- 
+
       <div class="table">
         <div v-show="viewLastUpdateCol" class="column">
           <button @click="sortByLastUpdate">
@@ -97,7 +95,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </html>
 </template>
@@ -130,7 +127,7 @@ export default {
       isSortedTradingCol: false,
 
       //Search by input
-      searchInput: '',
+      searchInput: "",
     };
   },
 
@@ -188,20 +185,22 @@ export default {
     sortColumn(isSorted, field) {
       this.currencies.sort((a, b) => {
         if (isSorted) return a[field] < b[field];
-        
+
         return a[field] > b[field];
       });
     },
 
-    filteredCurrencies (){
-      // sort currencies by user input
-      let newcurrencies = this.currencies.filter((item) => {
-        if (this.searchInput) {
-          return item["name"].includes(this.searchInput);
-        }
-      })
-      this.currencies = newcurrencies;
-    }
+    // filteredCurrencies() {
+    //   // sort currencies by user input
+    //   if (this.searchInput) {
+    //     let newcurrencies = this.currencies.filter((item) => {
+    //       return item["name"].includes(this.searchInput);
+    //     });
+    //     return newcurrencies;
+        
+    //   }
+    //   return this.currencies;
+    // },
   },
 };
 </script>
