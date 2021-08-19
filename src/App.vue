@@ -41,14 +41,14 @@
         <input v-model="searchInput" placeholder="Search" />
       
       </div>
-
+ 
       <div class="table">
         <div v-show="viewLastUpdateCol" class="column">
           <button @click="sortByLastUpdate">
             Last update
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.last_update_at }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.last_update_at }}
           </div>
         </div>
 
@@ -56,8 +56,8 @@
           <button @click="sortByCode">
             Code
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.code }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.code }}
           </div>
         </div>
 
@@ -65,8 +65,8 @@
           <button @click="sortByName">
             Name
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.name }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.name }}
           </div>
         </div>
 
@@ -74,8 +74,8 @@
           <button @click="sortByDepositEnabled">
             Deposit enabled
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.deposit_enabled }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.deposit_enabled }}
           </div>
         </div>
 
@@ -83,8 +83,8 @@
           <button @click="sortByWithdrawalEnabled">
             Withdrawal enabled
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.withdrawal_enabled }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.withdrawal_enabled }}
           </div>
         </div>
 
@@ -92,11 +92,12 @@
           <button @click="sortByTradingEnabled">
             Trading enabled
           </button>
-          <div v-for="transaction in transactions" :key="transaction.key">
-            {{ transaction.trading_enabled }}
+          <div v-for="currency in currencies" :key="currency.key">
+            {{ currency.trading_enabled }}
           </div>
         </div>
       </div>
+
     </div>
   </html>
 </template>
@@ -107,7 +108,7 @@ export default {
   data() {
     return {
       // JSON operations
-      transactions: [],
+      currencies: [],
 
       // EditTable variables
       viewEditTable: false,
@@ -146,7 +147,7 @@ export default {
 
       xhr.open("GET", path, true);
       xhr.onload = () => {
-        this.transactions = xhr.response;
+        this.currencies = xhr.response;
       };
 
       xhr.send();
@@ -185,14 +186,21 @@ export default {
     },
 
     sortColumn(isSorted, field) {
-      this.transactions.sort((a, b) => {
+      this.currencies.sort((a, b) => {
         if (isSorted) return a[field] < b[field];
+        
         return a[field] > b[field];
       });
     },
 
-    filterByUserInput(){
-      // sort transactions by user input
+    filteredCurrencies (){
+      // sort currencies by user input
+      let newcurrencies = this.currencies.filter((item) => {
+        if (this.searchInput) {
+          return item["name"].includes(this.searchInput);
+        }
+      })
+      this.currencies = newcurrencies;
     }
   },
 };
