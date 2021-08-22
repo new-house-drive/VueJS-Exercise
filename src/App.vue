@@ -5,12 +5,15 @@
       <div class="table-top">
         <div>Currencies</div>
 
+        <!-- Edit Table Button and Dropdown Menu -->
         <div class="edit-table">
           <button @click="viewEditTable = !viewEditTable">
             Edit table
           </button>
 
           <div v-show="viewEditTable" class="edit-table-menu">
+            <!-- todo: add pictures for showing whether the column is visible -->
+
             <button @click="viewLastUpdateCol = !viewLastUpdateCol">
               Last update
             </button>
@@ -34,6 +37,7 @@
             <button @click="viewTradingEnabledCol = !viewTradingEnabledCol">
               Trading enabled
             </button>
+
           </div>
         </div>
 
@@ -41,42 +45,55 @@
       </div>
 
       <div class="table">
+
+        <!-- Last Update Column -->
         <div v-show="viewLastUpdateCol" class="column">
+          
           <button @click="sortByLastUpdate">
             Last update
           </button>
+
           <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.last_update_at }}
           </div>
-        </div>
 
+        </div>
+        <!-- Code Column -->
         <div v-show="viewCodeCol" class="column">
+
           <button @click="sortByCode">
             Code
           </button>
+
           <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.code }}
           </div>
         </div>
-
+        <!-- Name Column -->
         <div v-show="viewNameCol" class="column">
+
           <button @click="sortByName">
             Name
           </button>
+
           <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.name }}
           </div>
         </div>
 
+        <!-- Deposit Enabled Column -->
         <div v-show="viewDepositEnabledCol" class="column">
+
           <button @click="sortByDepositEnabled">
             Deposit enabled
           </button>
+
           <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.deposit_enabled }}
           </div>
         </div>
 
+        <!-- Withdrawal Enabled Column -->
         <div v-show="viewWithdrawEnabledCol" class="column">
           <button @click="sortByWithdrawalEnabled">
             Withdrawal enabled
@@ -86,6 +103,7 @@
           </div>
         </div>
 
+        <!-- Trading enabled Column -->
         <div v-show="viewTradingEnabledCol" class="column">
           <button @click="sortByTradingEnabled">
             Trading enabled
@@ -104,13 +122,13 @@ export default {
   name: "App",
   data() {
     return {
-      // JSON operations
+      // Current array displayed
       currencies: [],
 
-      // EditTable variables
+      // EditTable Visible Boolean
       viewEditTable: false,
 
-      //Columns Visibility
+      //Columns Visibility Booleans
       viewLastUpdateCol: true,
       viewCodeCol: true,
       viewNameCol: true,
@@ -118,7 +136,7 @@ export default {
       viewWithdrawEnabledCol: true,
       viewTradingEnabledCol: true,
 
-      //Name sorting
+      //Name sorting Booleans
       isSortedLastUpdateCol: false,
       isSortedCodeCol: false,
       isSortedNameCol: false,
@@ -150,7 +168,7 @@ export default {
       xhr.send();
     },
 
-    /** SORT COLUMNS BY FIELD */
+    /** Booleans showing the visibility of the columns */
     /**todo: Abstract part of the following */
     sortByLastUpdate() {
       this.sortColumn(this.isSortedLastUpdateCol, "last_update_at");
@@ -182,6 +200,8 @@ export default {
       this.isSortedTradingCol = !this.isSortedTradingCol;
     },
 
+
+    /* Main method for sorting columns */
     sortColumn(isSorted, field) {
       this.currencies.sort((a, b) => {
         if (isSorted) return a[field] < b[field];
@@ -190,9 +210,11 @@ export default {
       });
     },
 
+
+    /* Final array received as a resulf of sorting */
     filteredCurrencies() {
-      // sort currencies by user input
       let newCurrencies = []
+
       if (this.searchInput) {
         newCurrencies = this.currencies.filter((item) => {
           return this.filterByNameOrCode(item);
@@ -202,6 +224,8 @@ export default {
       }
       return this.currencies;
     },
+
+    /* Method checks whether the fields are available for search at the moment */
 
     filterByNameOrCode(item) {
         let sortByName = this.viewNameCol;
