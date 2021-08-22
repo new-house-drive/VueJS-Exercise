@@ -45,7 +45,7 @@
           <button @click="sortByLastUpdate">
             Last update
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.last_update_at }}
           </div>
         </div>
@@ -54,7 +54,7 @@
           <button @click="sortByCode">
             Code
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.code }}
           </div>
         </div>
@@ -63,7 +63,7 @@
           <button @click="sortByName">
             Name
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.name }}
           </div>
         </div>
@@ -72,7 +72,7 @@
           <button @click="sortByDepositEnabled">
             Deposit enabled
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.deposit_enabled }}
           </div>
         </div>
@@ -81,7 +81,7 @@
           <button @click="sortByWithdrawalEnabled">
             Withdrawal enabled
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.withdrawal_enabled }}
           </div>
         </div>
@@ -90,7 +90,7 @@
           <button @click="sortByTradingEnabled">
             Trading enabled
           </button>
-          <div v-for="currency in currencies" :key="currency.key">
+          <div v-for="currency in filteredCurrencies()" :key="currency.key">
             {{ currency.trading_enabled }}
           </div>
         </div>
@@ -192,15 +192,33 @@ export default {
 
     filteredCurrencies() {
       // sort currencies by user input
+      let newCurrencies = []
       if (this.searchInput) {
-        let newcurrencies = this.currencies.filter((item) => {
-          return item["name"].includes(this.searchInput);
+        newCurrencies = this.currencies.filter((item) => {
+          return this.filterByNameOrCode(item);
         });
-        return newcurrencies;
+        return newCurrencies;
         
       }
       return this.currencies;
     },
+
+    filterByNameOrCode(item) {
+        let sortByName = this.viewNameCol;
+        let sortByCode = this.viewCodeCol;
+        
+        let input = this.searchInput.toLowerCase()
+        let name = item['name'].toLowerCase()
+        let code = item['code'].toLowerCase()
+
+        if (sortByName && sortByCode){
+          if(name.includes(input) || code.includes(input)) return item;
+        }
+
+        if (sortByName && name.includes(input)) return item;
+
+        if (sortByCode && code.includes(input)) return item;
+    }
   },
 };
 </script>
