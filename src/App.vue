@@ -307,6 +307,8 @@ export default {
       if (sortByCode && code.includes(input)) return item;
     },
 
+    /* Prettifies the Last Update column */
+    /* todo: rename */
     convertToDate(date) {
       return date.slice(0, 10).toString() + ', ' + date.slice(11, 19).toString()
     }
