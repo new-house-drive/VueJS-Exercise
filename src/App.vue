@@ -3,41 +3,61 @@
   <html>
     <div id="app">
       <div class="table-top">
-        <div>Currencies</div>
+        <div class="table-top-header">Currencies info</div>
 
         <!-- Edit Table Button and Dropdown Menu -->
         <div class="edit-table">
-          <button @click="viewEditTable = !viewEditTable">
+          <button
+            @click="viewEditTable = !viewEditTable"
+            class="edit-table-menu-button"
+          >
             Edit table
           </button>
 
           <div v-show="viewEditTable" class="edit-table-menu">
             <!-- todo: add pictures for showing whether the column is visible -->
 
-            <button @click="viewLastUpdateCol = !viewLastUpdateCol">
+            <button
+              @click="viewLastUpdateCol = !viewLastUpdateCol"
+              class="edit-table-dropdown-button"
+            >
               Last update
             </button>
 
-            <button @click="viewCodeCol = !viewCodeCol">
+            <button
+              @click="viewCodeCol = !viewCodeCol"
+              class="edit-table-dropdown-button"
+            >
               Code
             </button>
 
-            <button @click="viewNameCol = !viewNameCol">
+            <button
+              @click="viewNameCol = !viewNameCol"
+              class="edit-table-dropdown-button"
+            >
               Name
             </button>
 
-            <button @click="viewDepositEnabledCol = !viewDepositEnabledCol">
+            <button
+              @click="viewDepositEnabledCol = !viewDepositEnabledCol"
+              class="edit-table-dropdown-button"
+            >
               Deposit enabled
             </button>
 
-            <button @click="viewWithdrawEnabledCol = !viewWithdrawEnabledCol">
+            <button
+              @click="viewWithdrawEnabledCol = !viewWithdrawEnabledCol"
+              class="edit-table-dropdown-button"
+            >
               Withdrawal enabled
             </button>
 
-            <button @click="viewTradingEnabledCol = !viewTradingEnabledCol">
+            <button
+              @click="viewTradingEnabledCol = !viewTradingEnabledCol"
+              class="edit-table-dropdown-button"
+            >
               Trading enabled
             </button>
-
           </div>
         </div>
 
@@ -45,71 +65,93 @@
       </div>
 
       <div class="table">
-
         <!-- Last Update Column -->
         <div v-show="viewLastUpdateCol" class="column">
-          
-          <button @click="sortByLastUpdate">
+          <button @click="sortByLastUpdate" class="table-header">
             Last update
           </button>
 
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
-            {{ currency.last_update_at }}
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
+            {{ convertToDate(currency.last_update_at) }}
           </div>
-
         </div>
         <!-- Code Column -->
         <div v-show="viewCodeCol" class="column">
-
-          <button @click="sortByCode">
+          <button @click="sortByCode" class="table-header">
             Code
           </button>
 
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
             {{ currency.code }}
           </div>
         </div>
+
         <!-- Name Column -->
         <div v-show="viewNameCol" class="column">
-
-          <button @click="sortByName">
+          <button @click="sortByName" class="table-header">
             Name
           </button>
 
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
             {{ currency.name }}
           </div>
         </div>
 
         <!-- Deposit Enabled Column -->
         <div v-show="viewDepositEnabledCol" class="column">
-
-          <button @click="sortByDepositEnabled">
+          <button @click="sortByDepositEnabled" class="table-header">
             Deposit enabled
           </button>
 
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
-            {{ currency.deposit_enabled }}
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
+            <span v-show="currency.deposit_enabled == '1'"> Yes </span>
+            <span v-show="currency.deposit_enabled == '0'"> No </span>
           </div>
         </div>
 
         <!-- Withdrawal Enabled Column -->
         <div v-show="viewWithdrawEnabledCol" class="column">
-          <button @click="sortByWithdrawalEnabled">
+          <button @click="sortByWithdrawalEnabled" class="table-header">
             Withdrawal enabled
           </button>
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
-            {{ currency.withdrawal_enabled }}
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
+            <span v-show="currency.withdrawal_enabled == '1'"> Yes </span>
+            <span v-show="currency.withdrawal_enabled == '0'"> No </span>
           </div>
         </div>
 
         <!-- Trading enabled Column -->
         <div v-show="viewTradingEnabledCol" class="column">
-          <button @click="sortByTradingEnabled">
+          <button @click="sortByTradingEnabled" class="table-header">
             Trading enabled
           </button>
-          <div v-for="currency in filteredCurrencies()" :key="currency.key">
-            {{ currency.trading_enabled }}
+          <div
+            v-for="currency in filteredCurrencies()"
+            :key="currency.key"
+            class="table-element"
+          >
+            <span v-show="currency.trading_enabled == '1'"> Yes </span>
+            <span v-show="currency.trading_enabled == '0'"> No </span>
           </div>
         </div>
       </div>
@@ -200,7 +242,6 @@ export default {
       this.isSortedTradingCol = !this.isSortedTradingCol;
     },
 
-
     /* Main method for sorting columns */
     sortColumn(isSorted, field) {
       this.currencies.sort((a, b) => {
@@ -210,17 +251,15 @@ export default {
       });
     },
 
-
     /* Final array received as a resulf of sorting */
     filteredCurrencies() {
-      let newCurrencies = []
+      let newCurrencies = [];
 
       if (this.searchInput) {
         newCurrencies = this.currencies.filter((item) => {
           return this.filterByNameOrCode(item);
         });
         return newCurrencies;
-        
       }
       return this.currencies;
     },
@@ -228,20 +267,24 @@ export default {
     /* Method checks whether the fields are available for search at the moment */
 
     filterByNameOrCode(item) {
-        let sortByName = this.viewNameCol;
-        let sortByCode = this.viewCodeCol;
-        
-        let input = this.searchInput.toLowerCase()
-        let name = item['name'].toLowerCase()
-        let code = item['code'].toLowerCase()
+      let sortByName = this.viewNameCol;
+      let sortByCode = this.viewCodeCol;
 
-        if (sortByName && sortByCode){
-          if(name.includes(input) || code.includes(input)) return item;
-        }
+      let input = this.searchInput.toLowerCase();
+      let name = item["name"].toLowerCase();
+      let code = item["code"].toLowerCase();
 
-        if (sortByName && name.includes(input)) return item;
+      if (sortByName && sortByCode) {
+        if (name.includes(input) || code.includes(input)) return item;
+      }
 
-        if (sortByCode && code.includes(input)) return item;
+      if (sortByName && name.includes(input)) return item;
+
+      if (sortByCode && code.includes(input)) return item;
+    },
+
+    convertToDate(date) {
+      return date.slice(0, 10).toString() + ', ' + date.slice(11, 19).toString()
     }
   },
 };

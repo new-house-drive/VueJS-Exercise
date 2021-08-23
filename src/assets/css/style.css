@@ -1,10 +1,34 @@
-#app {
+/* summary
+    #app
 
+    .table-top
+        .edit-table-menu
+        .edit-table-button
+        .edit-table-dropdown-buttom
+
+
+    
+
+*/
+
+
+#app {
+    border:rgb(204, 198, 198) 1px solid;
 }
 
 .table-top {
     display: grid;
     grid-template-columns: repeat(3, auto);
+
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+
+}
+
+.table-top-header {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 700;
 }
 
 .edit-table-menu {
@@ -12,9 +36,59 @@
     grid-template-columns: auto;
 
     position: absolute;
+
+    
+}
+
+.edit-table-menu-button {
+    padding-left: 6em;
+    padding-right: 6em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    background-color: white;
+
+    border: rgb(56, 53, 53) 1px solid;
+}
+
+.edit-table-menu-button:hover {
+    background-color: rgb(204, 203, 203);
+}
+
+.edit-table-dropdown-button {
+    position: relative;
+    
+    background-color: white;
+    border: rgb(71, 65, 65) 1px solid;
+
+    padding-right: 5em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+
+    text-align: left;
 }
 
 .table {
     display: grid;
     grid-template-columns: repeat(6, auto);
+}
+
+.table-header {
+    width: 100%;
+    background-color: seashell;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    font-size: 1.1em;
+    border: seashell 1px solid;
+}
+
+.table-header:hover {
+    border: black 1px solid;
+}
+
+.table-element {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 0.9em;
 }
