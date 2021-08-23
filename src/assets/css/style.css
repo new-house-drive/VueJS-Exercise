@@ -74,6 +74,11 @@
     background-color: rgb(188, 235, 141);
 }
 
+.edit-table-menu-pic {
+    height: 1.2em;
+    margin-bottom: -0.2em;
+}
+
 .table {
     display: grid;
     grid-template-columns: repeat(6, auto);

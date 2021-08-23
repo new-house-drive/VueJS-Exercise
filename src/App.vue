@@ -21,6 +21,18 @@
               @click="viewLastUpdateCol = !viewLastUpdateCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewLastUpdateCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewLastUpdateCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
               Last update
             </button>
 
@@ -28,6 +40,18 @@
               @click="viewCodeCol = !viewCodeCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewCodeCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewCodeCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
               Code
             </button>
 
@@ -35,6 +59,18 @@
               @click="viewNameCol = !viewNameCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewNameCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewNameCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
               Name
             </button>
 
@@ -42,6 +78,18 @@
               @click="viewDepositEnabledCol = !viewDepositEnabledCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewDepositEnabledCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewDepositEnabledCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
               Deposit enabled
             </button>
 
@@ -49,6 +97,17 @@
               @click="viewWithdrawEnabledCol = !viewWithdrawEnabledCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewWithdrawEnabledCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewWithdrawEnabledCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
               Withdrawal enabled
             </button>
 
@@ -56,6 +115,17 @@
               @click="viewTradingEnabledCol = !viewTradingEnabledCol"
               class="edit-table-dropdown-button"
             >
+              <img
+                v-show="viewTradingEnabledCol"
+                src="pic/show-icon.svg"
+                class="edit-table-menu-pic"
+              />
+
+              <img
+                v-show="!viewTradingEnabledCol"
+                src="pic/hide-icon.svg"
+                class="edit-table-menu-pic"
+              />
               Trading enabled
             </button>
           </div>
@@ -67,12 +137,11 @@
       <div class="table">
         <!-- Last Update Column -->
         <div v-show="viewLastUpdateCol" class="column">
-          
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByLastUpdate" class="table-header">
             Last update
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -80,17 +149,16 @@
             class="table-element"
           >
             {{ convertToDate(currency.last_update_at) }}
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
         <!-- Code Column -->
         <div v-show="viewCodeCol" class="column">
-
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByCode" class="table-header">
             Code
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -98,17 +166,17 @@
             class="table-element"
           >
             {{ currency.code }}
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
 
         <!-- Name Column -->
         <div v-show="viewNameCol" class="column">
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByName" class="table-header">
             Name
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -116,17 +184,17 @@
             class="table-element"
           >
             {{ currency.name }}
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
 
         <!-- Deposit Enabled Column -->
         <div v-show="viewDepositEnabledCol" class="column">
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByDepositEnabled" class="table-header">
             Deposit enabled
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -135,17 +203,17 @@
           >
             <span v-show="currency.deposit_enabled == '1'"> Yes </span>
             <span v-show="currency.deposit_enabled == '0'"> No </span>
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
 
         <!-- Withdrawal Enabled Column -->
         <div v-show="viewWithdrawEnabledCol" class="column">
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByWithdrawalEnabled" class="table-header">
             Withdrawal enabled
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -154,17 +222,17 @@
           >
             <span v-show="currency.withdrawal_enabled == '1'"> Yes </span>
             <span v-show="currency.withdrawal_enabled == '0'"> No </span>
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
 
         <!-- Trading enabled Column -->
         <div v-show="viewTradingEnabledCol" class="column">
-          <hr class="header-border"/>
+          <hr class="header-border" />
           <button @click="sortByTradingEnabled" class="table-header">
             Trading enabled
           </button>
-          <hr class="header-border"/>
+          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -173,11 +241,13 @@
           >
             <span v-show="currency.trading_enabled == '1'"> Yes </span>
             <span v-show="currency.trading_enabled == '0'"> No </span>
-            <hr class='bottom-border'/>
+            <hr class="bottom-border" />
           </div>
         </div>
 
-        <div class='bottom-total-amount'> Total: {{filteredCurrencies().length}} </div>
+        <div class="bottom-total-amount">
+          Total: {{ filteredCurrencies().length }}
+        </div>
       </div>
     </div>
   </html>
@@ -310,8 +380,10 @@ export default {
     /* Prettifies the Last Update column */
     /* todo: rename */
     convertToDate(date) {
-      return date.slice(0, 10).toString() + ', ' + date.slice(11, 19).toString()
-    }
+      return (
+        date.slice(0, 10).toString() + ", " + date.slice(11, 19).toString()
+      );
+    },
   },
 };
 </script>
