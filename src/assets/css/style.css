@@ -34,6 +34,8 @@
 .edit-table-menu {
     display: grid;
     grid-template-columns: auto;
+    background-color: white;
+    z-index: 1;
 
     position: absolute;
 
@@ -48,7 +50,7 @@
 
     background-color: white;
 
-    border: rgb(56, 53, 53) 1px solid;
+    border: rgb(173, 172, 172) 1px solid;
 }
 
 .edit-table-menu-button:hover {
@@ -68,6 +70,10 @@
     text-align: left;
 }
 
+.edit-table-dropdown-button:hover {
+    background-color: rgb(188, 235, 141);
+}
+
 .table {
     display: grid;
     grid-template-columns: repeat(6, auto);
@@ -75,7 +81,7 @@
 
 .table-header {
     width: 100%;
-    background-color: seashell;
+    background-color: rgb(255, 253, 251);
     padding-top: 0.3em;
     padding-bottom: 0.3em;
     font-size: 1.1em;
@@ -84,11 +90,38 @@
 
 .table-header:hover {
     border: black 1px solid;
+    background-color: rgb(188, 235, 141);
 }
 
+.header-border {
+    margin:0;
+    padding: 0;
+}
+
+
+
 .table-element {
+    position: relative;
     text-align: center;
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 0.9em;
+    
+}
+
+.bottom-border {
+    position: absolute;
+    margin: 0%;
+    padding:0%;
+    bottom: 0;
+    width: 100%;
+    color: rgb(216, 216, 216);
+}
+
+
+.bottom-total-amount {
+    grid-column: 1 / 7;
+    text-align: end;
+
+    padding: 0.4em;
 }
