@@ -133,15 +133,16 @@
 
         <input v-model="searchInput" placeholder="Search" />
       </div>
-
+      <hr class="sort-column-button-upper-border" />
       <div class="table">
+        <hr class="sort-column-button-bottom-border" />
+
         <!-- Last Update Column -->
         <div v-show="viewLastUpdateCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByLastUpdate" class="table-header">
+          <button @click="sortByLastUpdate" class="sort-column-button">
             Last update
+            <div class="sort-column-button-wrapping"></div>
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -149,16 +150,17 @@
             class="table-element"
           >
             {{ convertToDate(currency.last_update_at) }}
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
+
         <!-- Code Column -->
         <div v-show="viewCodeCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByCode" class="table-header">
+          <button @click="sortByCode" class="sort-column-button">
             Code
+            <div class="sort-column-button-wrapping"></div>
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -166,17 +168,17 @@
             class="table-element"
           >
             {{ currency.code }}
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
 
         <!-- Name Column -->
         <div v-show="viewNameCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByName" class="table-header">
+          <button @click="sortByName" class="sort-column-button">
             Name
+            <div class="sort-column-button-wrapping"></div>
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -184,17 +186,17 @@
             class="table-element"
           >
             {{ currency.name }}
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
 
         <!-- Deposit Enabled Column -->
         <div v-show="viewDepositEnabledCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByDepositEnabled" class="table-header">
+          <button @click="sortByDepositEnabled" class="sort-column-button">
             Deposit enabled
+            <div class="sort-column-button-wrapping"></div>
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -203,17 +205,17 @@
           >
             <span v-show="currency.deposit_enabled == '1'"> Yes </span>
             <span v-show="currency.deposit_enabled == '0'"> No </span>
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
 
         <!-- Withdrawal Enabled Column -->
         <div v-show="viewWithdrawEnabledCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByWithdrawalEnabled" class="table-header">
+          <button @click="sortByWithdrawalEnabled" class="sort-column-button">
             Withdrawal enabled
+            <div class="sort-column-button-wrapping"></div>
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -222,17 +224,17 @@
           >
             <span v-show="currency.withdrawal_enabled == '1'"> Yes </span>
             <span v-show="currency.withdrawal_enabled == '0'"> No </span>
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
 
         <!-- Trading enabled Column -->
         <div v-show="viewTradingEnabledCol" class="column">
-          <hr class="header-border" />
-          <button @click="sortByTradingEnabled" class="table-header">
+          <button @click="sortByTradingEnabled" class="sort-column-button">
             Trading enabled
+            
           </button>
-          <hr class="header-border" />
 
           <div
             v-for="currency in filteredCurrencies()"
@@ -241,7 +243,8 @@
           >
             <span v-show="currency.trading_enabled == '1'"> Yes </span>
             <span v-show="currency.trading_enabled == '0'"> No </span>
-            <hr class="bottom-border" />
+            <hr class="table-element-border" />
+            <div class="table-element-wrapping"></div>
           </div>
         </div>
 
