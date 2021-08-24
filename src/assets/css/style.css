@@ -1,12 +1,37 @@
 /* summary
     #app
 
-    .table-top
-    .table-top-header
+    NAVBAR
+
+    .navbar
+    .navbar-header
+
+    .navbar-edit-table-button
+    .navbar-edit-table-button:hover
+    .navbar-edit-table-button:active
+    
+    .navbar-edit-table-dropdown
+    .navbar-edit-table-dropdown-button
+    .navbar-edit-table-dropdown-button:hover
+    .navbar-edit-table-dropdown-button:active
+    .navbar-edit-table-dropdown-pic
 
 
+    TABLE
+    
+    .table
+    
+    .sort-column-button
+    .sort-column-button:hover
+    .sort-column-button-upper-border
+    .sort-column-button-bottom-border
+    .sort-column-button-wrapping
 
+    .table-element
+    .table-element-border
+    .table-element-wrapping
 
+    .bottom-total-amount
     
 
 */
