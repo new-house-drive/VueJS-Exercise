@@ -15,7 +15,6 @@
           </button>
 
           <div v-show="viewEditTable" class="navbar-edit-table-dropdown">
-            <!-- todo: add pictures for showing whether the column is visible -->
 
             <button
               @click="viewLastUpdateCol = !viewLastUpdateCol"
