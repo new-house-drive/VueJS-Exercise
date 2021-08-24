@@ -15,7 +15,6 @@
           </button>
 
           <div v-show="viewEditTable" class="navbar-edit-table-dropdown">
-
             <button
               @click="viewLastUpdateCol = !viewLastUpdateCol"
               class="navbar-edit-table-dropdown-button"
@@ -130,9 +129,13 @@
           </div>
         </div>
 
-        <input v-model="searchInput"
-                placeholder="Search"
-                class='navbar-search' />
+        <div class="navbar-search">
+          <input
+            v-model="searchInput"
+            placeholder="Search"
+            class="navbar-search-input"
+          />
+        </div>
       </div>
       <hr class="sort-column-button-upper-border" />
       <div class="table">
@@ -234,7 +237,6 @@
         <div v-show="viewTradingEnabledCol" class="column">
           <button @click="sortByTradingEnabled" class="sort-column-button">
             Trading enabled
-            
           </button>
 
           <div
