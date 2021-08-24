@@ -99,8 +99,8 @@
     display: grid;
     grid-template-columns: auto;
     top: 100%;
-    right: 1.1em;
-    width: 16.5em;
+    right: 1em;
+    width: 15em;
 
     background-color: white;
     z-index: 3;
