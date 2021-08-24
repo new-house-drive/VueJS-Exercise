@@ -2,9 +2,9 @@
     #app
 
     .table-top
-        .edit-table-menu
-        .edit-table-button
-        .edit-table-dropdown-buttom
+    .table-top-header
+
+
 
 
     
@@ -16,7 +16,9 @@
     border:rgb(204, 198, 198) 1px solid;
 }
 
-.table-top {
+/*Navbar*/
+
+.navbar {
     display: grid;
     grid-template-columns: repeat(3, auto);
 
@@ -25,7 +27,7 @@
 
 }
 
-.table-top-header {
+.navbar-header {
     text-align: center;
     font-size: 1.2em;
     font-weight: 700;
@@ -33,18 +35,7 @@
     padding-top: 0.2em;
 }
 
-.edit-table-menu {
-    display: grid;
-    grid-template-columns: auto;
-    background-color: white;
-    z-index: 3;
-
-    position: absolute;
-
-    
-}
-
-.edit-table-menu-button {
+.navbar-edit-table-button {
     padding-left: 6em;
     padding-right: 6em;
     padding-top: 0.5em;
@@ -55,31 +46,60 @@
     border: rgb(173, 172, 172) 1px solid;
 }
 
-.edit-table-menu-button:hover {
-    background-color: rgb(204, 203, 203);
+.navbar-edit-table-button:hover {
+    background-color: rgb(233, 231, 231);
 }
 
-.edit-table-dropdown-button {
+.navbar-edit-table-button:active {
+    background-color: rgb(188, 235, 141);
+}
+
+
+
+.navbar-edit-table-dropdown {
+    display: grid;
+    grid-template-columns: auto;
+
+    background-color: white;
+    z-index: 3;
+
+    position: absolute;
+
+    
+}
+
+
+
+.navbar-edit-table-dropdown-button {
     position: relative;
     
     background-color: white;
     border: rgb(71, 65, 65) 1px solid;
 
-    padding-right: 5em;
+    padding-right: 5.5em;
     padding-top: 0.4em;
     padding-bottom: 0.4em;
 
     text-align: left;
 }
 
-.edit-table-dropdown-button:hover {
+.navbar-edit-table-dropdown-button:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.navbar-edit-table-dropdown-button:active {
     background-color: rgb(188, 235, 141);
 }
 
-.edit-table-menu-pic {
+
+.navbar-edit-table-dropdown-pic {
     height: 1.2em;
     margin-bottom: -0.2em;
 }
+
+
+
+/* TABLE CONTENT */
 
 .table {
     display: grid;

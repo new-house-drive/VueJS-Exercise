@@ -2,35 +2,35 @@
   <!DOCTYPE html>
   <html>
     <div id="app">
-      <div class="table-top">
-        <div class="table-top-header">Currencies info</div>
+      <div class="navbar">
+        <div class="navbar-header">Currencies info</div>
 
         <!-- Edit Table Button and Dropdown Menu -->
-        <div class="edit-table">
+        <div class="navbar-edit-table">
           <button
             @click="viewEditTable = !viewEditTable"
-            class="edit-table-menu-button"
+            class="navbar-edit-table-button"
           >
             Edit table
           </button>
 
-          <div v-show="viewEditTable" class="edit-table-menu">
+          <div v-show="viewEditTable" class="navbar-edit-table-dropdown">
             <!-- todo: add pictures for showing whether the column is visible -->
 
             <button
               @click="viewLastUpdateCol = !viewLastUpdateCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewLastUpdateCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewLastUpdateCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               Last update
@@ -38,18 +38,18 @@
 
             <button
               @click="viewCodeCol = !viewCodeCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewCodeCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewCodeCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               Code
@@ -57,18 +57,18 @@
 
             <button
               @click="viewNameCol = !viewNameCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewNameCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewNameCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               Name
@@ -76,18 +76,18 @@
 
             <button
               @click="viewDepositEnabledCol = !viewDepositEnabledCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewDepositEnabledCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewDepositEnabledCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               Deposit enabled
@@ -95,43 +95,45 @@
 
             <button
               @click="viewWithdrawEnabledCol = !viewWithdrawEnabledCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewWithdrawEnabledCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewWithdrawEnabledCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
               Withdrawal enabled
             </button>
 
             <button
               @click="viewTradingEnabledCol = !viewTradingEnabledCol"
-              class="edit-table-dropdown-button"
+              class="navbar-edit-table-dropdown-button"
             >
               <img
                 v-show="viewTradingEnabledCol"
                 src="pic/show-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
 
               <img
                 v-show="!viewTradingEnabledCol"
                 src="pic/hide-icon.svg"
-                class="edit-table-menu-pic"
+                class="navbar-edit-table-dropdown-pic"
               />
               Trading enabled
             </button>
           </div>
         </div>
 
-        <input v-model="searchInput" placeholder="Search" />
+        <input v-model="searchInput"
+                placeholder="Search"
+                class='navbar-search' />
       </div>
       <hr class="sort-column-button-upper-border" />
       <div class="table">
